@@ -1,4 +1,5 @@
 %{
+  "amnesia": {:hex, :amnesia, "0.2.7", "ffc2221bf72da4cfafbbb497adf9cf7e52138f1333cec5836187a53f94ae0665", [:mix], [{:exquisite, "~> 0.1.7", [hex: :exquisite, repo: "hexpm", optional: false]}], "hexpm"},
   "base64url": {:hex, :base64url, "0.0.1", "36a90125f5948e3afd7be97662a1504b934dd5dac78451ca6e9abf85a10286be", [], [], "hexpm"},
   "cache_tab": {:hex, :cache_tab, "1.0.12", "a06a4ffbd4da8469791ba941512a6a45ed8c11865b4606a368e21b332da3638a", [], [{:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm"},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [], [], "hexpm"},
@@ -11,6 +12,7 @@
   "eimp": {:git, "https://github.com/processone/eimp.git", "c7201d18c360b89faf2c827bf3ab2acc1c10b812", [ref: "c7201d18"]},
   "ejabberd": {:git, "https://github.com/processone/ejabberd.git", "c0ef054f6fa605219b88d41f2d2bf37c52f08d83", []},
   "esip": {:hex, :esip, "1.0.21", "711c704337d434db6d7c70bd0da868aaacd91b252c0bb63b4580e6c896164f1f", [], [{:fast_tls, "1.0.20", [hex: :fast_tls, repo: "hexpm", optional: false]}, {:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}, {:stun, "1.0.20", [hex: :stun, repo: "hexpm", optional: false]}], "hexpm"},
+  "exquisite": {:hex, :exquisite, "0.1.8", "ee8f56aae477287ce5e7dfcbc163a420cccbb73e680a6d80a09203e9ef514fa4", [], [], "hexpm"},
   "ezlib": {:git, "https://github.com/processone/ezlib.git", "ec6491d788436bb096022843e6ec7f58d2973ae3", [tag: "1.0.3"]},
   "fast_tls": {:hex, :fast_tls, "1.0.20", "edd241961ab20b71ec1e9f75a2a2c043128ff117adf3efd42e6cec94f1937539", [], [{:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm"},
   "fast_xml": {:hex, :fast_xml, "1.1.28", "31ce5cf44d20e900e1a499009f886ff74b589324d532ed0ed7a432e4f498beb1", [:rebar3], [{:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm"},
