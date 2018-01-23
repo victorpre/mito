@@ -18,6 +18,12 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Start Phoenix interactive endpoint with `iex -S mix phoenix.server`
   * Create an user with `:ejabberd_auth.try_register("victorpre", "localhost", "mypass")`
 
+### DB setup
+ * Fetch all nodes with `nodes = [node | Node.list]`
+ * Create your nodes with: `Amnesia.Schema.create(nodes)`
+ * Create your DBs with: `Database.create!(disk: nodes)`
+ * Wait until all nodes are complete: `:ok = Database.wait(15000)`
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
