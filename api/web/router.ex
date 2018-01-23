@@ -9,5 +9,7 @@ defmodule Mito.Router do
     pipe_through :api
 
     get "/ejabberd", EjabberdController, :index
+    get "/verify", UserController, :verify_email
+    post "/register", UserController, :create
   end
 end
