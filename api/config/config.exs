@@ -12,8 +12,8 @@ config :mito,
 # Configures the endpoint
 config :mito, Mito.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "GALqOBzNYlQPx0ED9ecxkCX0RcO2NfvIpPgDPx07MNEHDF9ZLkWFUxFT8ZaLkIDJ",
-  render_errors: [view: Mito.ErrorView, accepts: ~w(json)],
+  secret_key_base: "tPu5IaVNDyEvpc1/i75cFaCeUUqNteprcT6Mk5xokdyYaxFpCdynSyyzdqEthHLX",
+  render_errors: [view: Mito.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Mito.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
