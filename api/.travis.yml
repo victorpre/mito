@@ -1,0 +1,5 @@
+language: elixir
+before_script:
+  - mix deps.get
+script:
+  - mix test
