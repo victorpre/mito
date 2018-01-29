@@ -1,4 +1,4 @@
-matrxi:
+matrix:
   language: elixir
   before_script:
     - cd api/
