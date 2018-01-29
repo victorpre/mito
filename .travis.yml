@@ -1,7 +1,6 @@
 matrix:
   include:
     - language: elixir
-      elixir: "1.4"
       before_script:
         - cd api/
         - mix deps.get
