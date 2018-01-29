@@ -1,0 +1,7 @@
+matrxi:
+  language: elixir
+  before_script:
+    - cd api/
+    - mix deps.get
+  script:
+    - mix test
