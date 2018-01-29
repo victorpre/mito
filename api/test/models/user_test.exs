@@ -1,5 +1,6 @@
 defmodule Mito.UserTest do
   use Mito.ModelCase
+  import Mito.Factory
 
   alias Mito.User
 
@@ -7,7 +8,7 @@ defmodule Mito.UserTest do
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
-    changeset = User.changeset(%User{}, @valid_attrs)
+    changeset = User.changeset(%User{}, params_for(:user))
     assert changeset.valid?
   end
 

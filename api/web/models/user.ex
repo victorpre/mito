@@ -4,6 +4,8 @@ defmodule Mito.User do
   schema "users" do
     field :username, :string
     field :email, :string
+    field :password_hash, :string
+    field :password, :string, virtual: true
 
     timestamps()
   end
@@ -13,7 +15,8 @@ defmodule Mito.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:username, :email])
-    |> validate_required([:username, :email])
+    |> cast(params, [:username, :email, :password_hash])
+    |> validate_length(:email, min: 1, max: 255)
+    |> validate_required([:username, :email, :password_hash])
   end
 end
