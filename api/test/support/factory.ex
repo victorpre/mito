@@ -7,7 +7,8 @@ defmodule Mito.Factory do
     %User{
       username: "victorpre",
       email: "victor@victorpre.com",
-      password_hash: "123123123"
+      password: "123123123",
+      password_hash: "3123123123123"
     }
   end
 end
