@@ -3,6 +3,7 @@ defmodule Mito.UserControllerTest do
   import Mito.Factory
 
   alias Mito.User
+  @valid_attrs %{username: "victor", email: "victor@mito.com", password: "123123123"}
   @invalid_attrs %{email: ""}
 
   setup %{conn: conn} do
@@ -28,11 +29,27 @@ defmodule Mito.UserControllerTest do
     end
   end
 
-  test "creates and renders resource when data is valid", %{conn: conn} do
-    user_params = params_for(:user)
+  test "creates resource when data is valid", %{conn: conn} do
+    user_params = params_for(:user, @valid_attrs)
     conn = post conn, user_path(conn, :create), user: user_params
+
     assert json_response(conn, 201)["data"]["id"]
-    assert Repo.get_by(User, user_params)
+  end
+
+  test "generates password hash when data is valid", %{conn: conn} do
+    user_params = @valid_attrs
+    conn = post conn, user_path(conn, :create), user: user_params
+    user_id = json_response(conn, 201)["data"]["id"]
+
+    assert Repo.get(User, user_id).password_hash
+  end
+
+  test "renders resource when data is valid", %{conn: conn} do
+    user_params = params_for(:user, @valid_attrs)
+    conn = post conn, user_path(conn, :create), user: user_params
+    expected_params = Map.drop(user_params, [:password, :password_hash])
+
+    assert Repo.get_by(User, expected_params)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
@@ -40,13 +57,21 @@ defmodule Mito.UserControllerTest do
     assert json_response(conn, 422)["errors"] != %{}
   end
 
-  test "updates and renders chosen resource when data is valid", %{conn: conn} do
+  test "updates chosen resource when data is valid", %{conn: conn} do
     user = insert(:user)
-    user_params = %{email: "newemail@mail.com"}
+    user_params = params_for(:user, @valid_attrs)
+    conn = put conn, user_path(conn, :update, user), user: user_params
+
+    assert Repo.get_by(User, Map.delete(user_params, :password))
+  end
+
+  test "renders chosen resource when data is valid", %{conn: conn} do
+    user = insert(:user)
+    user_params = params_for(:user, @valid_attrs)
     conn = put conn, user_path(conn, :update, user), user: user_params
     assert json_response(conn, 200)["data"]["id"]
-    assert Repo.get_by(User, user_params)
   end
+
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
     user = insert(:user)
