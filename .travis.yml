@@ -2,6 +2,7 @@ matrix:
   include:
     - language: elixir
       elixir: "1.6"
+      otp_release: "20"
       before_install:
         - cd api/
       script:
