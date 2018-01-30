@@ -1,0 +1,8 @@
+matrix:
+  include:
+    - language: elixir
+      elixir: "1.6"
+      before_install:
+        - cd api/
+      script:
+        - mix test
