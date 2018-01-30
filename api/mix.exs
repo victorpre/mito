@@ -20,7 +20,7 @@ defmodule Mito.Mixfile do
   def application do
     [
       mod: {Mito, []},
-      extra_applications: [:logger, :ejabberd]
+      extra_applications: [:logger, :ejabberd, :ex_machina]
     ]
   end
 
@@ -44,7 +44,8 @@ defmodule Mito.Mixfile do
       {:ejabberd, "~> 18.1"},
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
-      {:argon2_elixir, "~> 1.2"}
+      {:argon2_elixir, "~> 1.2"},
+      {:ex_machina, "~> 2.1", only: :test}
     ]
   end
 
