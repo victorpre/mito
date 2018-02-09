@@ -8,4 +8,4 @@ matrix:
         - mix test
   cache:
     directories:
-      - deps
+      - api/deps
