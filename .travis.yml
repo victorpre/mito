@@ -7,3 +7,6 @@ matrix:
         - cd api/
       script:
         - mix test
+  cache:
+    directories:
+      - api/deps
