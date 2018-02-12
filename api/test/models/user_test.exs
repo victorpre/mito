@@ -4,7 +4,7 @@ defmodule Mito.UserTest do
 
   alias Mito.User
 
-  @valid_attrs %{email: "victor@mito.com", username: "some username"}
+  @valid_attrs %{email: "victor@mito.com", username: "some username", name: "name"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

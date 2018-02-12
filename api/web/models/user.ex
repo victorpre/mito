@@ -1,13 +1,14 @@
 defmodule Mito.User do
   use Mito.Web, :model
 
-  @required_fields ~w(email username)a
+  @required_fields ~w(email username name)a
 
   schema "users" do
     field :username, :string
     field :email, :string
     field :password_hash, :string
     field :password, :string, virtual: true
+    field :name, :string
 
     timestamps()
   end

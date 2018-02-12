@@ -3,7 +3,8 @@ defmodule Mito.UserControllerTest do
   import Mito.Factory
 
   alias Mito.User
-  @valid_attrs %{username: "victor", email: "victor@mito.com", password: "123123123"}
+  @valid_attrs %{username: "victor", name: "victor", email: "victor@mito.com", password: "123123123"}
+
   @invalid_attrs %{email: ""}
 
   setup %{conn: conn} do
