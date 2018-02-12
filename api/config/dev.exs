@@ -54,3 +54,8 @@ config :mito, Mito.Repo,
   database: "mito_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :ejabberd,
+  file: "config/ejabberd.yml",
+  log_path: 'logs/ejabberd.log'
+

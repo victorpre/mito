@@ -22,11 +22,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :ejabberd,
-  file: "config/ejabberd.yml",
-  log_path: 'logs/ejabberd.log'
-
-  # Customize Mnesia directory:
+# Customize Mnesia directory:
 config :mnesia,
   dir: 'mnesiadb/'
 
