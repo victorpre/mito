@@ -4,8 +4,16 @@ defmodule Mito.UserTest do
 
   alias Mito.User
 
-  @valid_attrs %{email: "victor@mito.com", username: "some username"}
-  @invalid_attrs %{}
+  @valid_attrs %{email: "test@user.com", username: "username", name: "name"}
+  @invalid_attrs %{email: "", username: ""}
+
+  setup do
+    IO.puts "Cleaning Ejabberd test user"
+    case :ejabberd_auth.user_exists(@valid_attrs.username, "localhost") do
+      true  -> :ejabberd_auth.remove_user(@valid_attrs.username, "localhost")
+      _ -> :ok
+    end
+  end
 
   test "changeset with valid attributes" do
     changeset = User.changeset(%User{}, params_for(:user))
@@ -27,5 +35,11 @@ defmodule Mito.UserTest do
     attrs = Map.merge(@valid_attrs, %{password: "123123123"})
     changeset = User.registration_changeset(%User{}, attrs)
     assert changeset.changes[:password_hash]
+  end
+
+  test "registration captalizes user name" do
+    attrs = Map.merge(@valid_attrs, %{password: "123123123"})
+    changeset = User.registration_changeset(%User{}, attrs)
+    assert changeset.changes.name == "Name"
   end
 end

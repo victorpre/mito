@@ -17,3 +17,8 @@ config :mito, Mito.Repo,
   database: "mito_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :ejabberd,
+  file: "config/ejabberd.test.yml",
+  log_path: 'logs/ejabberd.test.log'
+
