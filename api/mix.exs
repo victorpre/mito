@@ -45,7 +45,7 @@ defmodule Mito.Mixfile do
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
-      {:ex_machina, "~> 2.1", only: :test}
+      {:ex_machina, "~> 2.1"}
     ]
   end
 
