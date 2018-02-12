@@ -4,7 +4,7 @@ defmodule Mito.UserTest do
 
   alias Mito.User
 
-  @valid_attrs %{email: "some email", username: "some username"}
+  @valid_attrs %{email: "victor@mito.com", username: "some username"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -15,5 +15,17 @@ defmodule Mito.UserTest do
   test "changeset with invalid attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
+  end
+
+  test "registration changeset with valid attributes" do
+    attrs = Map.merge(@valid_attrs, %{password: "123123123"})
+    changeset = User.registration_changeset(%User{}, attrs)
+    assert changeset.valid?
+  end
+
+  test "registration changeset generates password hash" do
+    attrs = Map.merge(@valid_attrs, %{password: "123123123"})
+    changeset = User.registration_changeset(%User{}, attrs)
+    assert changeset.changes[:password_hash]
   end
 end
