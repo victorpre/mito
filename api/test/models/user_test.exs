@@ -8,10 +8,10 @@ defmodule Mito.UserTest do
   @invalid_attrs %{email: "", username: ""}
 
   setup do
-    IO.puts "Cleaning Ejabberd"
+    IO.puts "Cleaning Ejabberd test user"
     case :ejabberd_auth.user_exists(@valid_attrs.username, "localhost") do
-      true  -> :ejabberd_admin.unregister(@valid_attrs.username, "localhost")
-      _   -> :ok
+      true  -> :ejabberd_auth.remove_user(@valid_attrs.username, "localhost")
+      _ -> :ok
     end
   end
 
