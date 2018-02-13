@@ -46,9 +46,13 @@ defmodule Mito.UserController do
   def delete(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
 
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(user)
+    case Repo.delete(user) do
+      {:ok, struct} -> User.delete_ejabberd_user(struct)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(Mito.ChangesetView, "error.json", changeset: changeset)
+    end
 
     send_resp(conn, :no_content, "")
   end
