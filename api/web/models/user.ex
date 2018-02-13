@@ -46,10 +46,17 @@ defmodule Mito.User do
   end
 
   @doc """
-  Build changeset for registration
+  Register user on ejabberd server
   """
   def create_ejabberd_user(%User{username: username, password: password } = user, host) do
     :ejabberd_auth.try_register(username, host, password)
+  end
+
+  @doc """
+  Delete user from ejabberd server
+  """
+  def delete_ejabberd_user(%User{username: username}) do
+    :ejabberd_auth.remove_user(username, @host)
   end
 
   @doc """
