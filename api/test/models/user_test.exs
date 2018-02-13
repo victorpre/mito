@@ -8,7 +8,6 @@ defmodule Mito.UserTest do
   @invalid_attrs %{email: "", username: ""}
 
   setup do
-    IO.puts "Cleaning Ejabberd test user"
     case :ejabberd_auth.user_exists(@valid_attrs.username, "localhost") do
       true  -> :ejabberd_auth.remove_user(@valid_attrs.username, "localhost")
       _ -> :ok
@@ -41,5 +40,18 @@ defmodule Mito.UserTest do
     attrs = Map.merge(@valid_attrs, %{password: "123123123"})
     changeset = User.registration_changeset(%User{}, attrs)
     assert changeset.changes.name == "Name"
+  end
+
+  test "creation in ejabberd" do
+    user = insert(:user)
+    User.create_ejabberd_user(user, "localhost")
+    assert :ejabberd_auth.user_exists(user.username, "localhost")
+  end
+
+  test "deletion in ejabberd" do
+    user = insert(:user)
+    User.create_ejabberd_user(user, "localhost")
+    User.delete_ejabberd_user(user)
+    refute :ejabberd_auth.user_exists(user.username, "localhost")
   end
 end
