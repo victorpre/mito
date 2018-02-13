@@ -3,6 +3,7 @@ defmodule Mito.User do
   alias Mito.User
 
   @required_fields ~w(email username name)a
+  @host Application.get_env(:mito, Mito.Repo)[:hostname]
 
   schema "users" do
     field :username, :string
@@ -77,7 +78,7 @@ defmodule Mito.User do
   Checks for unique username on ejabberd side
   """
   defp validate_unique_user(%{changes: user} = changeset) do
-    case (changeset.valid? && :ejabberd_auth.user_exists(user.username, "localhost")) do
+    case (changeset.valid? && :ejabberd_auth.user_exists(user.username, @host)) do
       true  -> add_error(changeset, :username, "already exists")
       false -> changeset
     end
