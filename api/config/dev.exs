@@ -59,3 +59,6 @@ config :ejabberd,
   file: "config/ejabberd.yml",
   log_path: 'logs/ejabberd.log'
 
+
+config :mito, Mito.Auth.Guardian,
+  secret_key: "/ZaNFpkOBpCEgvqar24LBSGLIhotQZrm4KoZwt47opu6HyrCr8QjWEV5cq01bSLm"

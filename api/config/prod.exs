@@ -56,7 +56,8 @@ config :logger, level: :info
 #
 #     config :mito, Mito.Endpoint, server: true
 #
-
+config :mito, Mito.Auth.Guardian,
+  secret_key: "u7B2zpIAr9htWD12CqjZqOVbDQg55YgsTPJg7uluTmzIi7MgyxWY4Fa54Wdf/G78"
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
