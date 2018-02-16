@@ -14,6 +14,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 ##  Development
 
+You may need to install some depencies in order to compile `fast_xml`:
+
+  * Linux: `sudo apt-get install libexpat1-dev`
+
+  Compile dependencies:
+
   * `mix deps.get`
   * `mix deps.update --all`
   * `mix deps.compile`
