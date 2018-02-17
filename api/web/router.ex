@@ -13,18 +13,30 @@ defmodule Mito.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :api_auth do
+    plug Mito.Auth.Pipeline
+  end
+
   scope "/", Mito do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
   scope "/api", Mito do
     pipe_through :api
 
 
-    resources "/users", UserController, except: [:create]
+    resources "/users", UserController, only: [:create]
     post "/register", UserController, :create
+    post "/login", SessionController, :login
+  end
+
+  # Other scopes may use custom stacks.
+  scope "/api", Mito do
+    pipe_through [:api, :api_auth]
+
+
+    resources "/users", UserController, except: [:create]
   end
 end

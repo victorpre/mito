@@ -10,10 +10,10 @@ defmodule Mito.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id,
-      email: user.email,
-      username: user.username,
-      name: user.name
-    }
+    %{id: user.id, email: user.email, username: user.username, name: user.name}
+  end
+
+  def render("login.json", %{user: user, token: token}) do
+    %{token: token, email: user.email, username: user.username, name: user.name}
   end
 end

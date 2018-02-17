@@ -4,7 +4,6 @@ defmodule Mito.UserControllerTest do
 
   alias Mito.User
   @valid_attrs %{username: "victor", name: "victor", email: "victor@mito.com", password: "123123123"}
-
   @invalid_attrs %{email: ""}
 
   setup %{conn: conn} do
@@ -20,7 +19,7 @@ defmodule Mito.UserControllerTest do
     user_params = params_for(:user, @valid_attrs)
     conn = post conn, user_path(conn, :create), user: user_params
 
-    assert json_response(conn, 201)["data"]["id"]
+    assert json_response(conn, 201)
   end
 
   test "generates password hash when data is valid", %{conn: conn} do
@@ -28,7 +27,7 @@ defmodule Mito.UserControllerTest do
     conn = post conn, user_path(conn, :create), user: user_params
     user_id = json_response(conn, 201)["data"]["id"]
 
-    assert Repo.get(User, user_id).password_hash
+    assert Repo.get_by(User, email:  user_params.email).password_hash
   end
 
   test "renders user when data is valid", %{conn: conn} do
