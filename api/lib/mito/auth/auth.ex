@@ -9,8 +9,17 @@ defmodule Mito.Auth do
   checks that encrypting the plain text password matches in the
   encrypted password that was stored during user creation.
   """
-  def authenticate_user(%User{username: username, password: password } = user) do
+  def authenticate_user(%User{password: password} = user), do: check_password(user, password)
+
+  def authenticate_user(%{"username" => username, "password" => password} = user) do
     query = from(u in User, where: u.username == ^username)
+
+    Repo.one(query)
+    |> check_password(password)
+  end
+
+  def authenticate_user(%{"email" => email, "password" => password} = user) do
+    query = from(u in User, where: u.email == ^email)
 
     Repo.one(query)
     |> check_password(password)
@@ -20,7 +29,7 @@ defmodule Mito.Auth do
 
   defp check_password(user, plain_text_password) do
     case Argon2.checkpw(plain_text_password, user.password_hash) do
-      true -> Guardian.encode_and_sign(user)
+      true -> {:ok, user, Guardian.encode_and_sign(user)}
       false -> {:error, "Incorrect username or password"}
     end
   end
