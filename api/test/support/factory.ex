@@ -5,9 +5,9 @@ defmodule Mito.Factory do
 
   def user_factory do
     %User{
-      username: "username",
+      username: sequence(:username, &"username#{&1}"),
       name: "Test Name",
-      email: "test@user.com",
+      email: sequence(:email, &"test#{&1}@user.com"),
       password: "123123123",
       password_hash: "3123123123123"
     }
