@@ -21,7 +21,7 @@ class SignupForm extends Component {
     return (
       <Row>
         <Col m={4} s={12} offset="m4">
-          <Card title='Create and account'>
+          <Card title='Create a new account'>
             <form
               onSubmit={handleSubmit(this.handleSubmit)}
             >
