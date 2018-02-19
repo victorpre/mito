@@ -2,7 +2,7 @@ import { reset } from 'redux-form';
 import api from '../api';
 
 function setCurrentUser(dispatch, response) {
-  localStorage.setItem('token', JSON.stringify(response.meta.token));
+  localStorage.setItem('token', JSON.stringify(response.token));
   dispatch({ type: 'AUTHENTICATION_SUCCESS', response });
 }
 
@@ -31,4 +31,15 @@ export function logout(router) {
       dispatch({ type: 'LOGOUT' });
       router.transitionTo('/login');
     });
+}
+
+export function authenticate() {
+  return dispatch => api.post('/sessions/refresh')
+    .then((response) => {
+          setCurrentUser(dispatch, response);
+        })
+    .catch(() => {
+          localStorage.removeItem('token');
+          window.location = '/login';
+        });
 }

@@ -1,6 +1,6 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
-import {Navbar, NavItem, Row, Input} from 'react-materialize'
+import {Navbar, NavItem, Row, Input, Button} from 'react-materialize'
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
 
@@ -24,9 +24,9 @@ class MainNavbar extends Component {
 
     return (
       <Navbar brand='Mito' right>
-        <NavItem href="/signup">Signup</NavItem>
-        <NavItem>
+        {!isAuthenticated && <NavItem href="/signup">Signup</NavItem> }
           {isAuthenticated &&
+            <NavItem>
               <div>
                 <span>{currentUser.username}</span>
                 <Button
@@ -36,8 +36,8 @@ class MainNavbar extends Component {
                   Logout
                 </Button>
               </div>
+            </NavItem>
           }
-        </NavItem>
       </Navbar>
     );
   }
