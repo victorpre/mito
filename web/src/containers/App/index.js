@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import { BrowserRouter, Match, Miss } from 'react-router';
 import Home from '../Home';
 import NotFound from '../../components/NotFound';
+import Signup from '../Signup';
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        <div style={{ display: 'flex', flex: '1' }}>
           <Match exactly pattern="/" component={Home} />
+          <Match pattern="/signup" component={Signup} />
           <Miss component={NotFound} />
         </div>
       </BrowserRouter>
