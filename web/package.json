@@ -1,5 +1,5 @@
 {
-  "name": "sling",
+  "name": "mito",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -24,7 +24,8 @@
     "react-router": "4.0.0-alpha.5",
     "redux": "^3.6.0",
     "redux-form": "^6.1.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "react-materialize": "^0.18.2"
   },
   "scripts": {
     "start": "react-scripts start",
