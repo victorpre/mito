@@ -9,7 +9,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isAuthenticated: true,
-        currentUser: action.response.data,
+        currentUser: action.response,
       };
     case 'LOGOUT':
       return {
