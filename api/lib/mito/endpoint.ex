@@ -38,5 +38,6 @@ defmodule Mito.Endpoint do
     key: "_mito_key",
     signing_salt: "i55tN1Jp"
 
+  plug CORSPlug
   plug Mito.Router
 end

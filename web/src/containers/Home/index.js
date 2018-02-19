@@ -1,7 +1,23 @@
 // @flow
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import MainNavbar from '../../components/Navbar';
 
-const Home = () =>
-  <div>Home</div>;
+type Props = {
+  logout: () => void,
+  currentUser: Object,
+  isAuthenticated: boolean,
+}
 
-export default Home;
+class Home extends Component {
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
+  render() {
+    return (
+      <MainNavbar />
+    );
+  }
+}
+
+export default (Home);
