@@ -20,7 +20,7 @@ class SignupForm extends Component {
 
     return (
       <Row>
-        <Col m={4} s={12} offset="m4">
+        <Col className="xl4" l={8} m={12} s={12} offset="l2 xl4">
           <Card title='Create a new account'>
             <form
               onSubmit={handleSubmit(this.handleSubmit)}
@@ -57,8 +57,7 @@ class SignupForm extends Component {
                   component={Input}
                 />
               </Row>
-              <Row>
-                <Col offset="m9">
+              <Row className="right-align">
                   <Button
                     waves="light"
                     type="submit"
@@ -66,7 +65,6 @@ class SignupForm extends Component {
                   >
                     {submitting ? 'Submitting...' : 'Sign up'}
                   </Button>
-                </Col>
               </Row>
               <hr style={{ margin: '2rem 0' }} />
               <Row
@@ -76,6 +74,7 @@ class SignupForm extends Component {
                     node='a'
                     href='/login'
                     waves="light"
+                    className="btn-large"
                   >
                     Login
                   </Button>
