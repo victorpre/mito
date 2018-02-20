@@ -25,19 +25,15 @@ class MainNavbar extends Component {
     return (
       <Navbar brand='Mito' right>
         {!isAuthenticated && <NavItem href="/signup">Signup</NavItem> }
-          {isAuthenticated &&
-            <NavItem>
-              <div>
-                <span>{currentUser.username}</span>
-                <Button
-                  type="button"
-                  onClick={this.handleLogout}
-                >
-                  Logout
-                </Button>
-              </div>
-            </NavItem>
-          }
+        {isAuthenticated && <NavItem>{currentUser.username}</NavItem> }
+        {isAuthenticated &&
+          <NavItem onClick={this.handleLogout}>
+            <i className="material-icons right">
+              exit_to_app
+            </i>
+            Logout
+          </NavItem>
+        }
       </Navbar>
     );
   }
