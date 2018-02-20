@@ -12,17 +12,13 @@ defmodule Mito.SessionController do
   end
 
   def refresh(conn, _params) do
-    {:ok, user} =
-      Auth.Guardian.Plug.current_claims(conn)
-      |> Auth.Guardian.resource_from_claims()
-
     token = Auth.Guardian.Plug.current_token(conn)
 
-    case Auth.Guardian.refresh(token) do
-      {:ok, _old_stuff, {new_token, new_claims}} ->
+    case Auth.Guardian.resource_from_token(token) do
+      {:ok, user, _claims} ->
         conn
         |> put_status(:ok)
-        |> render(Mito.UserView, "login.json", user: user, token: new_token)
+        |> render(Mito.UserView, "login.json", user: user, token: token)
 
       {:error, _reason} ->
         conn
