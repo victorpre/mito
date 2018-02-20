@@ -28,7 +28,7 @@
     "react-materialize": "^0.18.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "sass --watch src/styles/scss:src/styles/css | react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
