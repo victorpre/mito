@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Match, Miss } from 'react-router';
 import { connect } from 'react-redux';
 import { authenticate } from '../../actions/session';
+import '../../styles/css/App.css';
 import Home from '../Home';
 import NotFound from '../../components/NotFound';
 import Signup from '../Signup';
