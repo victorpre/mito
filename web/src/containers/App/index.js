@@ -1,6 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { BrowserRouter, Match, Miss } from 'react-router';
+import { BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticate } from '../../actions/session';
 import '../../styles/css/App.css';
@@ -25,13 +29,15 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router>
         <div style={{ display: 'flex', flex: '1' }}>
-          <Match exactly pattern="/" component={Home} />
-          <Match pattern="/signup" component={Signup} />
-          <Miss component={NotFound} />
+          <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/signup" component={Signup} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
