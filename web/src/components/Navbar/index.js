@@ -1,5 +1,6 @@
 // @flow
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Navbar, NavItem, Row, Input, Button} from 'react-materialize'
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session';
