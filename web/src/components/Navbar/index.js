@@ -89,7 +89,7 @@ class MainNavbar extends Component {
                   </Button>
               }
               {isAuthenticated && (
-                  <Button className={classes.button} variant="raised" size="small">
+                  <Button className={classes.button}  size="small">
                     <AccountCircle className={classes.leftIcon} />
                     {currentUser.username}
                   </Button>
