@@ -119,17 +119,3 @@ export default connect(
   }),
   { logout }
 )(withStyles(styles)(MainNavbar));
-
-
-//      <Navbar brand='Mito' right>
-//        {!isAuthenticated && <NavItem href="/signup">Signup</NavItem> }
-//        {isAuthenticated && <NavItem>{currentUser.username}</NavItem> }
-//        {isAuthenticated &&
-//          <NavItem onClick={this.handleLogout}>
-//            <i className="material-icons right">
-//              exit_to_app
-//            </i>
-//            Logout
-//          </NavItem>
-//        }
-//      </Navbar>
