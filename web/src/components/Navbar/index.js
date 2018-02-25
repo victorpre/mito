@@ -9,9 +9,9 @@ import { withTheme } from 'material-ui/styles'
 import { withStyles } from 'material-ui/styles';
 
 import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
-import green from 'material-ui/colors/green';
 import pink from 'material-ui/colors/pink';
 import red from 'material-ui/colors/red';
+import common from 'material-ui/colors/common';
 
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
@@ -25,8 +25,18 @@ import Icon from 'material-ui/Icon';
 // We try our best to provide a great default value.
 const theme = createMuiTheme({
   palette: {
-    primary: green,
-    secondary: pink,
+    primary: {
+      light: pink[200],
+      main: pink[300],
+      dark: pink[400],
+      contrastText: common["white"],
+    },
+    secondary: {
+      light: common["white"],
+      main: common["white"],
+      dark: common["white"],
+      contrastText: pink[300],
+    },
     error: red,
     // Used by `getContrastText()` to maximize the contrast between the background and
     // the text.
