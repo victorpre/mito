@@ -18,6 +18,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import AccountCircle from 'material-ui-icons/AccountCircle';
+import ExitToApp from 'material-ui-icons/ExitToApp';
 import Icon from 'material-ui/Icon';
 
 // All the following keys are optional.
@@ -53,6 +54,9 @@ const styles = (theme: Object) => ({
   },
   leftIcon: {
     marginRight: theme.spacing.unit,
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
   },
 });
 
@@ -93,6 +97,12 @@ class MainNavbar extends Component {
                     <AccountCircle className={classes.leftIcon} />
                     {currentUser.username}
                   </Button>
+              )}
+              {isAuthenticated && (
+                <Button className={classes.button} onClick={this.handleLogout} size="small">
+                  Signout
+                  <ExitToApp className={classes.rightIcon} />
+                </Button>
               )}
             </Toolbar>
           </AppBar>
