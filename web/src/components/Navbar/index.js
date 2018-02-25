@@ -92,24 +92,24 @@ class MainNavbar extends Component {
     return (
       <div className={classes.root}>
         <MuiThemeProvider theme={theme}>
-          <AppBar position="static"color="primary" >
+          <AppBar position="static"color="secondary" >
             <Toolbar>
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Mito
               </Typography>
               {!isAuthenticated &&
-                  <Button href="/signup" className={classes.button}>
+                  <Button color="primary" href="/signup" className={classes.button}>
                     Signup
                   </Button>
               }
               {isAuthenticated && (
-                  <Button className={classes.button}  size="small">
+                  <Button color="primary" className={classes.button}  size="small">
                     <AccountCircle className={classes.leftIcon} />
                     {currentUser.username}
                   </Button>
               )}
               {isAuthenticated && (
-                <Button className={classes.button} onClick={this.handleLogout} size="small">
+                <Button color="primary" className={classes.button} onClick={this.handleLogout} size="small">
                   Signout
                   <ExitToApp className={classes.rightIcon} />
                 </Button>
