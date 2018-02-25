@@ -17,7 +17,7 @@ class Signup extends Component {
 
   props: Props
 
-  handleSignup = data => this.props.signup({user: data}, this.context.router);
+  handleSignup = data => this.props.signup({user: data}, this.props.history);
 
   render() {
     return (

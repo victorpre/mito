@@ -15,12 +15,12 @@ export function login(data, router) {
     });
 }
 
-export function signup(data, router) {
+export function signup(data, history) {
   return dispatch => api.post('/register', data)
     .then((response) => {
       setCurrentUser(dispatch, response);
       dispatch(reset('signup'));
-      router.transitionTo('/');
+      history.push('/');
     });
 }
 
