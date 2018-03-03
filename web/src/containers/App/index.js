@@ -17,6 +17,14 @@ type Props = {
 }
 
 class App extends Component {
+  componentWillMount(){
+    const primaryColor = "#f06292";
+      document.body.style.backgroundColor = primaryColor;
+  }
+  componentWillUnmount(){
+      document.body.style.backgroundColor = null;
+  }
+
   componentDidMount() {
     const token = localStorage.getItem('token');
 
