@@ -69,6 +69,11 @@ class MainNavbar extends Component {
                   Signup
                 </Button>
             }
+            {!isAuthenticated &&
+                <Button color="primary" href="/login" className={classes.button}>
+                  Login
+                </Button>
+            }
             {isAuthenticated && (
               <Button color="primary" className={classes.button}  size="small">
                 <AccountCircle className={classes.leftIcon} />
