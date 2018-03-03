@@ -1,5 +1,9 @@
 // @flow
 import React from 'react';
+import MaterialInput, { InputLabel } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form'
+import { withStyles } from 'material-ui/styles';
+import pink from 'material-ui/colors/pink';
 
 type Props = {
   input: Object,
@@ -8,22 +12,41 @@ type Props = {
   placeholder?: string,
   style?: Object,
   meta: Object,
+  classes: Object,
 }
 
-const Input = ({ input, label, type, placeholder, style, meta }: Props) =>
-  <div className="input-field">
-    <input
+const styles = theme => ({
+  formControl: {
+    margin: theme.spacing.unit,
+  },
+  inputLabelFocused: {
+    color: pink[300],
+  },
+  inputInkbar: {
+    '&:after': {
+      backgroundColor: pink[300],
+    },
+  },
+});
+
+const Input = ({ input, label, type, placeholder, style, meta, classes }: Props) =>
+  <FormControl fullWidth className={classes.formControl}>
+    <InputLabel
+      FormControlClasses={{
+        focused: classes.inputLabelFocused,
+      }}
+      htmlFor={input.name}
+    >
+      {placeholder}
+    </InputLabel>
+    <MaterialInput
       {...input}
-      type={type}
-      placeholder={placeholder}
-      className="validate"
+      classes={{
+        inkbar: classes.inputInkbar,
+      }}
       id={input.name}
     />
-      {label && <label htmlFor={input.id}>{label}</label>}
-      {meta.touched && meta.error &&
-        <div style={{ fontSize: '85%', color: 'rgb(255,59,48)' }}>{meta.error}</div>
-      }
-  </div>;
+  </FormControl>;
 
 
-export default Input;
+export default (withStyles(styles)(Input));
