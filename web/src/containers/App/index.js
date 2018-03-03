@@ -38,13 +38,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{ display: 'flex', flex: '1' }}>
-          <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/signup" component={Signup} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
+          <Route component={NotFound} />
+        </Switch>
       </Router>
     );
   }

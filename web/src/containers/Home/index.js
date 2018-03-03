@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MainNavbar from '../../components/Navbar';
+import Grid from 'material-ui/Grid';
 
 type Props = {
   logout: () => void,
@@ -16,7 +17,15 @@ class Home extends Component {
 
   render() {
     return (
-      <MainNavbar />
+      <div style={{ display: 'flex', flex: '1' }}>
+        <Grid container spacing={24}>
+          <Grid item xs={12}>
+            <MainNavbar />
+          </Grid>
+          <Grid item xs={12}>
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 }
