@@ -6,12 +6,12 @@ function setCurrentUser(dispatch, response) {
   dispatch({ type: 'AUTHENTICATION_SUCCESS', response });
 }
 
-export function login(data, router) {
-  return dispatch => api.post('/sessions', data)
+export function login(data, history) {
+  return dispatch => api.post('/login', data)
     .then((response) => {
       setCurrentUser(dispatch, response);
       dispatch(reset('login'));
-      router.transitionTo('/');
+      history.push('/');
     });
 }
 
