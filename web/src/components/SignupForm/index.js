@@ -2,87 +2,118 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {Card, Col, Row, Button} from 'react-materialize'
+import { withStyles } from 'material-ui/styles';
+import withRoot from '../../withRoot';
+import { FormControl } from 'material-ui/Form'
+import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
+import Typography from 'material-ui/Typography';
+import NButton from 'material-ui/Button';
+
 import Input from '../Input';
 
 type Props = {
   onSubmit: () => void,
   submitting: boolean,
   handleSubmit: () => void,
+  classes: Object,
 }
+
+const styles = theme => ({
+  root: theme.mixins.gutters({
+      paddingTop: 16,
+      paddingBottom: 16,
+      marginTop: theme.spacing.unit * 3,
+  }),
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+});
+
 
 class SignupForm extends Component {
   props: Props
 
   handleSubmit = data => this.props.onSubmit(data);
 
+  state = {
+    direction: 'row',
+    justify: 'center',
+    alignItems: 'center',
+  };
+
   render() {
-    const { handleSubmit, submitting } = this.props;
+    const { handleSubmit, submitting, classes } = this.props;
+    const { alignItems, direction, justify } = this.state;
 
     return (
-      <Row>
-        <Col className="xl4" l={8} m={12} s={12} offset="l2 xl4">
-          <Card title='Create a new account'>
+      <Grid container
+        alignItems={alignItems}
+        direction={direction}
+        justify={justify}
+        style={{flexGrow: 1}}
+      >
+        <Grid item xs={11} sm={8} lg={4}>
+          <Paper className={classes.root} elevation={8}>
+            <Typography variant="headline" component="h1">
+              Create a new account
+            </Typography>
+
             <form
               onSubmit={handleSubmit(this.handleSubmit)}
+              className={classes.container}
             >
-              <Row>
+              <Grid item xs={12} sm={12} lg={12}>
+
                 <Field
                   label="Full Name"
                   name="name"
                   type="text"
+                  placeholder="Full name"
                   component={Input}
                 />
-              </Row>
-              <Row>
                 <Field
                   label="Username"
+                  placeholder="Username"
                   name="username"
                   type="text"
                   component={Input}
                 />
-              </Row>
-              <Row>
                 <Field
-                  name="email"
                   label="Email"
+                  name="email"
+                  placeholder="Email"
                   type="email"
                   component={Input}
                 />
-              </Row>
-              <Row>
                 <Field
-                  name="password"
                   label="Password"
+                  name="password"
+                  placeholder="Password"
                   type="password"
                   component={Input}
                 />
-              </Row>
-              <Row className="right-align">
-                  <Button
-                    waves="light"
-                    type="submit"
-                    disabled={submitting}
-                  >
-                    {submitting ? 'Submitting...' : 'Sign up'}
-                  </Button>
-              </Row>
-              <hr style={{ margin: '2rem 0' }} />
-              <Row
-                className="center-align"
+              </Grid>
+              <Grid container
+                alignItems= ''
+                justify='flex-end'
               >
-                  <Button
-                    node='a'
-                    href='/login'
-                    waves="light"
-                    className="btn-large"
-                  >
-                    Login
-                  </Button>
-              </Row>
-            </form>
-          </Card>
-        </Col>
-      </Row>
+              <Grid item>
+                <NButton
+                  variant="raised"
+                  color="primary"
+                  disabled={submitting}
+                  type="submit"
+                >
+                  {submitting ? 'Submitting...' : 'Sign up'}
+                </NButton>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+      </Grid>
+    </Grid>
     );
   }
 }
@@ -106,4 +137,4 @@ const validate = (values) => {
 export default reduxForm({
   form: 'signup',
   validate,
-})(SignupForm);
+})(withRoot(withStyles(styles)(SignupForm)));
