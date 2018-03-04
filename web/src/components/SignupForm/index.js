@@ -96,24 +96,23 @@ class SignupForm extends Component {
                 />
               </Grid>
               <Grid container
-                alignItems= ''
                 justify='flex-end'
               >
-              <Grid item>
-                <Button
-                  variant="raised"
-                  color="primary"
-                  disabled={submitting}
-                  type="submit"
-                >
-                  {submitting ? 'Submitting...' : 'Sign up'}
-                </Button>
+                <Grid item>
+                  <Button
+                    variant="raised"
+                    color="primary"
+                    disabled={submitting}
+                    type="submit"
+                  >
+                    {submitting ? 'Submitting...' : 'Sign up'}
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </Paper>
+            </form>
+          </Paper>
+        </Grid>
       </Grid>
-    </Grid>
     );
   }
 }
