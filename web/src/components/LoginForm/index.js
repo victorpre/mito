@@ -1,23 +1,19 @@
 // @flow
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Field, reduxForm } from 'redux-form';
 
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../../withRoot';
 
+import { FormControl } from 'material-ui/Form'
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 
 import Input from '../Input';
-
-type Props = {
-  onSubmit: () => void,
-  submitting: boolean,
-  handleSubmit: () => void,
-  classes: Object,
-}
 
 const styles = theme => ({
   root: theme.mixins.gutters({
@@ -31,8 +27,14 @@ const styles = theme => ({
   },
 });
 
+type Props = {
+  onSubmit: () => void,
+  submitting: boolean,
+  handleSubmit: () => void,
+  classes: Object,
+}
 
-class SignupForm extends Component {
+class LoginForm extends Component {
   props: Props
 
   handleSubmit = data => this.props.onSubmit(data);
@@ -54,44 +56,28 @@ class SignupForm extends Component {
         justify={justify}
         style={{flexGrow: 1}}
       >
-        <Grid item xs={11} sm={8} lg={4}>
+        <Grid item xs={12} sm={8} lg={4}>
           <Paper className={classes.root} elevation={8}>
-            <Typography variant="headline" component="h1">
-              Create a new account
+            <Typography variant="headline" component="h2">
+              Login
             </Typography>
-
             <form
               onSubmit={handleSubmit(this.handleSubmit)}
               className={classes.container}
             >
               <Grid item xs={12} sm={12} lg={12}>
-
-                <Field
-                  label="Full Name"
-                  name="name"
-                  type="text"
-                  placeholder="Full name"
-                  component={Input}
-                />
                 <Field
                   label="Username"
-                  placeholder="Username"
                   name="username"
                   type="text"
-                  component={Input}
-                />
-                <Field
-                  label="Email"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
+                  placeholder="Username or e-mail"
                   component={Input}
                 />
                 <Field
                   label="Password"
                   name="password"
-                  placeholder="Password"
                   type="password"
+                  placeholder="Password"
                   component={Input}
                 />
               </Grid>
@@ -105,7 +91,7 @@ class SignupForm extends Component {
                     disabled={submitting}
                     type="submit"
                   >
-                    {submitting ? 'Submitting...' : 'Sign up'}
+                    {submitting ? 'Submitting...' : 'Login'}
                   </Button>
                 </Grid>
               </Grid>
@@ -134,6 +120,6 @@ const validate = (values) => {
 };
 
 export default reduxForm({
-  form: 'signup',
+  form: 'login',
   validate,
-})(withRoot(withStyles(styles)(SignupForm)));
+})(withRoot(withStyles(styles)(LoginForm)));;

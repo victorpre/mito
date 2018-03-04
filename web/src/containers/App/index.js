@@ -7,10 +7,10 @@ import { BrowserRouter as Router,
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authenticate } from '../../actions/session';
-import '../../styles/css/App.css';
 import Home from '../Home';
 import NotFound from '../../components/NotFound';
 import Signup from '../Signup';
+import Login from '../Login';
 
 type Props = {
   authenticate: () => void,
@@ -41,6 +41,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
       </Router>

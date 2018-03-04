@@ -52,7 +52,7 @@ class MainNavbar extends Component {
 
   props: Props
 
-  handleLogout = () => this.props.logout(this.context.router);
+  handleLogout = () => this.props.logout(this.context.router, this.props.history);
 
   render() {
     const { currentUser, isAuthenticated, classes } = this.props;
@@ -67,6 +67,11 @@ class MainNavbar extends Component {
             {!isAuthenticated &&
                 <Button color="primary" href="/signup" className={classes.button}>
                   Signup
+                </Button>
+            }
+            {!isAuthenticated &&
+                <Button color="primary" href="/login" className={classes.button}>
+                  Login
                 </Button>
             }
             {isAuthenticated && (

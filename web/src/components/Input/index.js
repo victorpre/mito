@@ -18,6 +18,10 @@ type Props = {
 const styles = theme => ({
   formControl: {
     margin: theme.spacing.unit,
+    alignItems: 'center',
+  },
+  inputLabel: {
+    left: "15%"
   },
   inputLabelFocused: {
     color: pink[300],
@@ -27,6 +31,9 @@ const styles = theme => ({
       backgroundColor: pink[300],
     },
   },
+  size: {
+    width: "70%"
+  },
 });
 
 const Input = ({ input, label, type, placeholder, style, meta, classes }: Props) =>
@@ -35,6 +42,9 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
       FormControlClasses={{
         focused: classes.inputLabelFocused,
       }}
+      className={
+        classes.inputLabel
+      }
       htmlFor={input.name}
     >
       {placeholder}
@@ -45,6 +55,7 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
       classes={{
         inkbar: classes.inputInkbar,
       }}
+      className={classes.size}
       id={input.name}
     />
   </FormControl>;
