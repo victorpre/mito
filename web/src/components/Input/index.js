@@ -41,6 +41,7 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
     </InputLabel>
     <MaterialInput
       {...input}
+      type={type}
       classes={{
         inkbar: classes.inputInkbar,
       }}
