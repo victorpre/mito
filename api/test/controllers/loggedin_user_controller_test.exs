@@ -63,6 +63,11 @@ defmodule Mito.LoggedinUserControllerTest do
     refute Repo.get(User, user.id)
   end
 
+  test "logout feature", %{conn: conn} do
+    user = insert(:user)
+    conn = delete conn, session_path(conn, :logout)
+    assert json_response(conn, 200)["data"]["msg"] == "Logged out successfully."
+  end
 
   defp render_json(template, assigns) do
     assigns = Map.new(assigns)

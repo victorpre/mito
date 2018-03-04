@@ -39,5 +39,6 @@ defmodule Mito.Router do
 
     resources "/users", UserController, except: [:create]
     post "/sessions/refresh", SessionController, :refresh
+    delete "/logout", SessionController, :logout
   end
 end

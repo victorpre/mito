@@ -16,4 +16,8 @@ defmodule Mito.UserView do
   def render("login.json", %{user: user, token: token}) do
     %{token: token, email: user.email, username: user.username, name: user.name}
   end
+
+  def render("logout.json", _) do
+    %{data: %{msg: "Logged out successfully."}}
+  end
 end
