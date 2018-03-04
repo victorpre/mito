@@ -25,11 +25,11 @@ export function signup(data, history) {
 }
 
 export function logout(router) {
-  return dispatch => api.delete('/sessions')
+  return dispatch => api.delete('/logout')
     .then(() => {
       localStorage.removeItem('token');
       dispatch({ type: 'LOGOUT' });
-      router.transitionTo('/login');
+      router.history.push('/');
     });
 }
 

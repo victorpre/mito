@@ -52,7 +52,7 @@ class MainNavbar extends Component {
 
   props: Props
 
-  handleLogout = () => this.props.logout(this.context.router);
+  handleLogout = () => this.props.logout(this.context.router, this.props.history);
 
   render() {
     const { currentUser, isAuthenticated, classes } = this.props;
