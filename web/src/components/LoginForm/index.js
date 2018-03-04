@@ -67,7 +67,7 @@ class LoginForm extends Component {
             >
               <Grid item xs={12} sm={12} lg={12}>
                 <Field
-                  label="Full Name"
+                  label="Username"
                   name="username"
                   type="text"
                   placeholder="Username or e-mail"
@@ -91,7 +91,7 @@ class LoginForm extends Component {
                     disabled={submitting}
                     type="submit"
                   >
-                    {submitting ? 'Submitting...' : 'Sign up'}
+                    {submitting ? 'Submitting...' : 'Login'}
                   </Button>
                 </Grid>
               </Grid>
