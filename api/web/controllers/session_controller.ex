@@ -26,4 +26,11 @@ defmodule Mito.SessionController do
         |> render(Mito.ErrorView, "forbidden.json", error: "Not authenticated")
     end
   end
+
+  def logout(conn, _params) do
+    conn
+    |> Auth.Guardian.Plug.sign_out
+    |> put_status(:ok)
+    |> render(Mito.UserView, "logout.json")
+  end
 end
