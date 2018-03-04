@@ -5,10 +5,14 @@ import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
 import { withStyles } from 'material-ui/styles';
+import withRoot from '../../withRoot';
+
 import { FormControl } from 'material-ui/Form'
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
+
 import Input from '../Input';
 
 const styles = theme => ({
@@ -57,13 +61,11 @@ class LoginForm extends Component {
             <Typography variant="headline" component="h2">
               Login
             </Typography>
-            <Typography component="p">
-              Paper can be used to build surface or other elements for your application.
-            </Typography>
-              <form
-                onSubmit={handleSubmit(this.handleSubmit)}
-                className={classes.container}
-              >
+            <form
+              onSubmit={handleSubmit(this.handleSubmit)}
+              className={classes.container}
+            >
+              <Grid item xs={12} sm={12} lg={12}>
                 <Field
                   label="Full Name"
                   name="username"
@@ -71,7 +73,29 @@ class LoginForm extends Component {
                   placeholder="Username or e-mail"
                   component={Input}
                 />
-              </form>
+                <Field
+                  label="Password"
+                  name="password"
+                  type="password"
+                  placeholder="Password"
+                  component={Input}
+                />
+              </Grid>
+              <Grid container
+                justify='flex-end'
+              >
+                <Grid item>
+                  <Button
+                    variant="raised"
+                    color="primary"
+                    disabled={submitting}
+                    type="submit"
+                  >
+                    {submitting ? 'Submitting...' : 'Sign up'}
+                  </Button>
+                </Grid>
+              </Grid>
+            </form>
           </Paper>
         </Grid>
       </Grid>
@@ -98,4 +122,4 @@ const validate = (values) => {
 export default reduxForm({
   form: 'login',
   validate,
-})(withStyles(styles)(LoginForm))
+})(withRoot(withStyles(styles)(LoginForm)));;
