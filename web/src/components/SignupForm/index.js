@@ -1,14 +1,14 @@
 // @flow
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import {Card, Col, Row, Button} from 'react-materialize'
+
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../../withRoot';
-import { FormControl } from 'material-ui/Form'
+
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import NButton from 'material-ui/Button';
+import Button from 'material-ui/Button';
 
 import Input from '../Input';
 
@@ -100,14 +100,14 @@ class SignupForm extends Component {
                 justify='flex-end'
               >
               <Grid item>
-                <NButton
+                <Button
                   variant="raised"
                   color="primary"
                   disabled={submitting}
                   type="submit"
                 >
                   {submitting ? 'Submitting...' : 'Sign up'}
-                </NButton>
+                </Button>
               </Grid>
             </Grid>
           </form>
