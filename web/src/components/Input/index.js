@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 import MaterialInput, { InputLabel } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form'
+import { FormControl, FormHelperText} from 'material-ui/Form'
+
 import { withStyles } from 'material-ui/styles';
 import pink from 'material-ui/colors/pink';
 
@@ -36,7 +37,7 @@ const styles = theme => ({
   },
 });
 
-const Input = ({ input, label, type, placeholder, style, meta, classes }: Props) =>
+const Input = ({ input, label, type, placeholder, style, meta: {touched, error}, classes }: Props) =>
   <FormControl fullWidth className={classes.formControl}>
     <InputLabel
       FormControlClasses={{
@@ -46,6 +47,7 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
         classes.inputLabel
       }
       htmlFor={input.name}
+      error={touched && error}
     >
       {placeholder}
     </InputLabel>
@@ -57,7 +59,9 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
       }}
       className={classes.size}
       id={input.name}
+      error={touched && error}
     />
+    {touched && error && <FormHelperText>{error}</FormHelperText>}
   </FormControl>;
 
 
