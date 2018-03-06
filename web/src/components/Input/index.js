@@ -22,8 +22,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     alignItems: 'center',
   },
-  inputLabel: {
-    left: "15%"
+  labelAlign: {
+    marginLeft: "15%"
+  },
+  helperAlign: {
+    marginLeft: "15%",
+    alignSelf: "left",
   },
   inputLabelFocused: {
     color: pink[300],
@@ -33,7 +37,7 @@ const styles = theme => ({
       backgroundColor: pink[300],
     },
   },
-  size: {
+  inputWidth: {
     width: "70%"
   },
 });
@@ -45,10 +49,10 @@ const Input = ({ input, label, type, placeholder, style, meta: {touched, error},
         focused: classes.inputLabelFocused,
       }}
       className={
-        classes.inputLabel
+        classes.labelAlign
       }
       htmlFor={input.name}
-      error={touched && error}
+      error={(touched && error) ? true : false}
     >
       {placeholder}
     </InputLabel>
@@ -56,13 +60,15 @@ const Input = ({ input, label, type, placeholder, style, meta: {touched, error},
       {...input}
       type={type}
       classes={{
-        inkbar: classes.inputInkbar,
+        input: classes.inputInkbar,
       }}
-      className={classes.size}
+      className={classes.inputWidth}
       id={input.name}
-      error={touched && error}
+      error={(touched && error) ? true : false}
     />
-    {touched && error && <FormHelperText>{error}</FormHelperText>}
+    {touched && error &&
+        <FormHelperText error className={classes.helperAlign}>{error}</FormHelperText>
+    }
   </FormControl>;
 
 
