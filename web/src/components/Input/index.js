@@ -1,7 +1,8 @@
 // @flow
 import React from 'react';
 import MaterialInput, { InputLabel } from 'material-ui/Input';
-import { FormControl } from 'material-ui/Form'
+import { FormControl, FormHelperText} from 'material-ui/Form'
+
 import { withStyles } from 'material-ui/styles';
 import pink from 'material-ui/colors/pink';
 
@@ -13,6 +14,7 @@ type Props = {
   style?: Object,
   meta: Object,
   classes: Object,
+  required?: Boolean,
 }
 
 const styles = theme => ({
@@ -20,8 +22,12 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     alignItems: 'center',
   },
-  inputLabel: {
-    left: "15%"
+  labelAlign: {
+    marginLeft: "15%"
+  },
+  helperAlign: {
+    marginLeft: "15%",
+    alignSelf: "left",
   },
   inputLabelFocused: {
     color: pink[300],
@@ -31,21 +37,22 @@ const styles = theme => ({
       backgroundColor: pink[300],
     },
   },
-  size: {
+  inputWidth: {
     width: "70%"
   },
 });
 
-const Input = ({ input, label, type, placeholder, style, meta, classes }: Props) =>
-  <FormControl fullWidth className={classes.formControl}>
+const Input = ({ input, label, type, placeholder, style, meta: {touched, error}, classes, required }: Props) =>
+  <FormControl fullWidth className={classes.formControl} required={required}>
     <InputLabel
       FormControlClasses={{
         focused: classes.inputLabelFocused,
       }}
       className={
-        classes.inputLabel
+        classes.labelAlign
       }
       htmlFor={input.name}
+      error={(touched && error) ? true : false}
     >
       {placeholder}
     </InputLabel>
@@ -53,11 +60,15 @@ const Input = ({ input, label, type, placeholder, style, meta, classes }: Props)
       {...input}
       type={type}
       classes={{
-        inkbar: classes.inputInkbar,
+        input: classes.inputInkbar,
       }}
-      className={classes.size}
+      className={classes.inputWidth}
       id={input.name}
+      error={(touched && error) ? true : false}
     />
+    {touched && error &&
+        <FormHelperText error className={classes.helperAlign}>{error}</FormHelperText>
+    }
   </FormControl>;
 
 
