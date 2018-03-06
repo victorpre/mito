@@ -14,6 +14,7 @@ type Props = {
   style?: Object,
   meta: Object,
   classes: Object,
+  required?: Boolean,
 }
 
 const styles = theme => ({
@@ -37,8 +38,8 @@ const styles = theme => ({
   },
 });
 
-const Input = ({ input, label, type, placeholder, style, meta: {touched, error}, classes }: Props) =>
-  <FormControl fullWidth className={classes.formControl}>
+const Input = ({ input, label, type, placeholder, style, meta: {touched, error}, classes, required }: Props) =>
+  <FormControl fullWidth className={classes.formControl} required={required}>
     <InputLabel
       FormControlClasses={{
         focused: classes.inputLabelFocused,

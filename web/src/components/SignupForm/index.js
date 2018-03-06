@@ -64,42 +64,57 @@ class SignupForm extends Component {
               onSubmit={handleSubmit(this.handleSubmit)}
               className={classes.container}
             >
-              <Grid item xs={12} sm={12} lg={12}>
-
-                <Field
-                  label="Full Name"
-                  name="name"
-                  type="text"
-                  placeholder="Full name"
-                  component={Input}
-                />
-                <Field
-                  label="Username"
-                  placeholder="Username"
-                  name="username"
-                  type="text"
-                  component={Input}
-                />
-                <Field
-                  label="Email"
-                  name="email"
-                  placeholder="Email"
-                  type="email"
-                  component={Input}
-                />
-                <Field
-                  label="Password"
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  component={Input}
-                />
-              </Grid>
               <Grid container
-                justify='flex-end'
+                alignItems={alignItems}
+                direction={direction}
+                justify={justify}
+                style={{flexGrow: 1}}
               >
-                <Grid item>
-                  <Button
+                <Grid item xs={12} sm={12} lg={12}>
+                  <Field
+                    label="Full Name"
+                    name="name"
+                    type="text"
+                    placeholder="Full name"
+                    component={Input}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} lg={12}>
+                  <Field
+                    label="Username"
+                    placeholder="Username"
+                    name="username"
+                    type="text"
+                    component={Input}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} lg={12}>
+                  <Field
+                    label="Email"
+                    name="email"
+                    placeholder="Email"
+                    type="email"
+                    component={Input}
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={12} lg={12}>
+                  <Field
+                    label="Password"
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    component={Input}
+                    required
+                  />
+                </Grid>
+                <Grid container
+                  justify='flex-end'
+                >
+                  <Grid item>
+                    <Button
                     variant="raised"
                     color="primary"
                     disabled={submitting}
@@ -109,7 +124,8 @@ class SignupForm extends Component {
                   </Button>
                 </Grid>
               </Grid>
-            </form>
+            </Grid>
+          </form>
           </Paper>
         </Grid>
       </Grid>

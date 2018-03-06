@@ -72,6 +72,7 @@ class LoginForm extends Component {
                   type="text"
                   placeholder="Username or e-mail"
                   component={Input}
+                  required
                 />
                 <Field
                   label="Password"
@@ -79,6 +80,7 @@ class LoginForm extends Component {
                   type="password"
                   placeholder="Password"
                   component={Input}
+                  required
                 />
               </Grid>
               <Grid container
