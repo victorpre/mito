@@ -29,6 +29,7 @@ defmodule Mito.Router do
 
     resources "/users", UserController, only: [:create]
     post "/register", UserController, :create
+    post "/validate-user", UserController, :validate
     post "/login", SessionController, :login
   end
 
