@@ -33,6 +33,19 @@ defmodule Mito.UserController do
     end
   end
 
+  def validate(conn, %{"user" => user_params}) do
+    changeset = User.unique_fields_changeset(%User{}, user_params)
+    case changeset.valid? do
+      true ->
+        conn
+        |> send_resp(:ok, "")
+      _ ->
+        conn
+        |> put_status(403)
+        |> render(Mito.ChangesetView, "error.json", changeset: changeset)
+    end
+  end
+
   def show(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
     render(conn, "show.json", user: user)
