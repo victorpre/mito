@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../../withRoot';
+import { validateUserFields, validateUserFieldsSuccess, validateUserFieldsFailure, resetValidateUserFields } from '../../actions/validateUserFields';
 
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
@@ -31,6 +32,32 @@ const styles = theme => ({
   },
 });
 
+
+// //For instant async server validation
+const asyncValidate = (values, dispatch) => {
+  return new Promise((resolve, reject) => {
+    dispatch(validateUserFields(values))
+      .then((result) => {
+        //Note: Error's "data" is in result.payload.response.data
+        // success's "data" is in result.payload.data
+        if (!result.payload.response) { //1st onblur
+          return;
+        }
+
+        let {data, status} = result.payload.response;
+
+        //if status is not 200 or any one of the fields exist, then there is a field error
+        if (status != 200 || data.username || data.email) {
+          //let other components know of error by updating the redux` state
+          dispatch(validateUserFieldsFailure(data));
+          throw data;
+        } else {
+          //let other components know that everything is fine by updating the redux` state
+          dispatch(validateUserFieldsSuccess(data)); //ps: this is same as dispatching RESET_USER_FIELDS
+        }
+      });
+  });
+};
 
 class SignupForm extends Component {
   props: Props
@@ -155,4 +182,5 @@ const validate = (values) => {
 export default reduxForm({
   form: 'signup',
   validate,
+  asyncValidate,
 })(withRoot(withStyles(styles)(SignupForm)));
