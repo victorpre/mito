@@ -3,6 +3,7 @@ defmodule Mito.User do
   alias Mito.User
 
   @required_fields ~w(email username name)a
+  @unique_fields ~w(email username)a
   @host Application.get_env(:mito, Mito.Repo)[:hostname]
 
   schema "users" do
@@ -15,6 +16,12 @@ defmodule Mito.User do
     timestamps()
   end
 
+   def unique_fields_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, @unique_fields, [])
+    |> validate_unique_fields
+  end
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
@@ -23,15 +30,9 @@ defmodule Mito.User do
     |> cast(params, @required_fields, [])
     |> validate_required(@required_fields)
     |> update_change(:name, &format_name/1)
-    |> update_change(:email, &String.downcase/1)
-    |> update_change(:username, &String.downcase/1)
-    |> validate_length(:username, min: 1)
     |> validate_length(:name, min: 1)
-    |> validate_length(:email, min: 1, max: 255)
-    |> unique_constraint(:username)
-    |> unique_constraint(:email)
+    |> validate_unique_fields
     |> validate_format(:email, ~r/@/)
-    |> validate_unique_user()
   end
 
   @doc """
@@ -44,6 +45,7 @@ defmodule Mito.User do
     |> validate_length(:password, min: 8)
     |> put_password_hash
   end
+
 
   @doc """
   Register user on ejabberd server
@@ -84,10 +86,24 @@ defmodule Mito.User do
   @doc """
   Checks for unique username on ejabberd side
   """
-  defp validate_unique_user(%{changes: user} = changeset) do
+  defp validate_unique_ejabberd_user(%{changes: user} = changeset) do
     case (changeset.valid? && :ejabberd_auth.user_exists(user.username, @host)) do
       true  -> add_error(changeset, :username, "already exists")
       false -> changeset
     end
+  end
+
+  @doc """
+  Validates the unique attributes for User
+  """
+  defp validate_unique_fields(struct) do
+    struct
+    |> update_change(:email, &String.downcase/1)
+    |> update_change(:username, &String.downcase/1)
+    |> validate_length(:email, min: 1, max: 255)
+    |> validate_length(:username, min: 1)
+    |> unique_constraint(:email)
+    |> unique_constraint(:username)
+    |> validate_unique_ejabberd_user
   end
 end
