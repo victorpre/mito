@@ -16,10 +16,24 @@ defmodule Mito.User do
     timestamps()
   end
 
-   def unique_fields_changeset(struct, params \\ %{}) do
+  def unique_fields_changeset(struct, params \\ %{}) do
     struct
     |> cast(params, @unique_fields, [])
-    |> validate_unique_fields
+    |> unique?
+  end
+
+  def unique?(%{changes: %{username: username}} = changeset) do
+    case Mito.Repo.get_by(User, username: username) do
+      nil -> changeset
+      user -> add_error(changeset, :username, "already exists")
+    end
+  end
+
+  def unique?(%{changes: %{email: email}} = changeset) do
+    case Mito.Repo.get_by(User, email: email) do
+      nil -> changeset
+      user -> add_error(changeset, :email, "already exists")
+    end
   end
 
   @doc """

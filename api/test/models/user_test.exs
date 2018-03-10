@@ -49,4 +49,16 @@ defmodule Mito.UserTest do
     User.delete_ejabberd_user(user)
     refute :ejabberd_auth.user_exists(user.username, "localhost")
   end
+
+  test "unique_fields_changeset passing username" do
+    user_params = params_for(:user, username: "victorpre")
+    insert(:user, user_params)
+    refute User.unique_fields_changeset(%User{}, user_params).valid?
+  end
+
+  test "unique_fields_changeset passing email" do
+    user_params = params_for(:user, email: "victorpre@victorpre.com")
+    insert(:user, user_params)
+    refute User.unique_fields_changeset(%User{}, user_params).valid?
+  end
 end
