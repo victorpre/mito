@@ -38,11 +38,12 @@ defmodule Mito.UserController do
     case changeset.valid? do
       true ->
         conn
-        |> send_resp(:ok, "")
+        |> put_status(:ok)
+        |> render(Mito.ChangesetView, "available.json", changeset: changeset)
       _ ->
         conn
         |> put_status(403)
-        |> render(Mito.ChangesetView, "error.json", changeset: changeset)
+        |> render(Mito.ChangesetView, "not_available.json", changeset: changeset)
     end
   end
 
