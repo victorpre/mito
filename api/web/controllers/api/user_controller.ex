@@ -42,7 +42,7 @@ defmodule Mito.UserController do
         |> render(Mito.ChangesetView, "available.json", changeset: changeset)
       _ ->
         conn
-        |> put_status(403)
+        |> put_status(:ok)
         |> render(Mito.ChangesetView, "not_available.json", changeset: changeset)
     end
   end
