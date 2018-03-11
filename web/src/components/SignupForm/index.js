@@ -158,5 +158,5 @@ export default reduxForm({
   form: 'signup',
   validate,
   asyncValidate,
-  asyncChangeFields: ['username']
+  asyncBlurFields: ['username','email']
 })(withRoot(withStyles(styles)(SignupForm)));

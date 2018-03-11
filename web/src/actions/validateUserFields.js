@@ -3,7 +3,7 @@ import api from '../api';
 //For instant async server validation
 export const asyncValidate = (values, dispatch) => {
   return new Promise((resolve, reject) => {
-    if (values.username.length == 0){
+    if ((values.username && values.username.length == 0) || (values.email && values.email.length == 0)){
       resolve();
     }
     else {
@@ -12,7 +12,7 @@ export const asyncValidate = (values, dispatch) => {
           let data = response.data;
           let status = response.status;
           //if there is an error
-          if(status != "ok" || data.username  ) {
+          if(status != "ok") {
             //let other comps know of error by updating redux` state
             reject(data); //this is for redux-form itself
           } else {
