@@ -21,10 +21,11 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "redux": "^3.6.0",
-    "redux-form": "^7.2.3",
+    "redux-form": "^7.3.0",
     "redux-thunk": "^2.1.0",
     "material-ui": "^1.0.0-beta.35",
-    "material-ui-icons": "1.0.0-beta.17"
+    "material-ui-icons": "1.0.0-beta.17",
+    "axios": "^0.17.1"
   },
   "scripts": {
     "start": "sass --watch src/styles/scss:src/styles/css | react-scripts start",
