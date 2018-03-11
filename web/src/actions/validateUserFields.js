@@ -1,35 +1,26 @@
 import api from '../api';
 
-//Validate user fields like name and password
-export const VALIDATE_USER_FIELDS = 'VALIDATE_USER_FIELDS';
-export const VALIDATE_USER_FIELDS_SUCCESS = 'VALIDATE_USER_FIELDS_SUCCESS';
-export const VALIDATE_USER_FIELDS_FAILURE = 'VALIDATE_USER_FIELDS_FAILURE';
-export const RESET_VALIDATE_USER_FIELDS = 'RESET_VALIDATE_USER_FIELDS';
-
-export function validateUserFields(values) {
-  const request = api.post('/validate-user', { user: values });
-
-  return {
-    type: VALIDATE_USER_FIELDS,
-    payload: request
-  };
-}
-
-export function validateUserFieldsSuccess() {
-  return {
-    type: VALIDATE_USER_FIELDS_SUCCESS
-  };
-}
-
-export function validateUserFieldsFailure(error) {
-  return {
-    type: VALIDATE_USER_FIELDS_FAILURE,
-    payload: error
-  };
-}
-
-export function resetValidateUserFields() {
-  return {
-    type: RESET_VALIDATE_USER_FIELDS
-  }
+//For instant async server validation
+export const asyncValidate = (values, dispatch) => {
+  return new Promise((resolve, reject) => {
+    if (values.username.length == 0){
+      resolve();
+    }
+    else {
+      const request = api.post('/validate-user', { user: values })
+        .then((response) => {
+          let data = response.data;
+          let status = response.status;
+          //if there is an error
+          if(status != "ok" || data.username  ) {
+            //let other comps know of error by updating redux` state
+            reject(data); //this is for redux-form itself
+          } else {
+            //let other comps know success by updating redux` state
+            //dispatch(response.payload);
+            resolve(data);//this is for redux-form itself
+          }
+        }); //dispatch
+    }
+  }); //promise
 };
