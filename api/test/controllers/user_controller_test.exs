@@ -56,6 +56,6 @@ defmodule Mito.UserControllerTest do
     user_params = %{username: user.username}
     conn = post conn, user_path(conn, :validate), user: user_params
 
-    assert json_response(conn, 403)["data"] == "Username already exists"
+    assert json_response(conn, 200)["data"]["username"] == "Username already exists"
   end
 end

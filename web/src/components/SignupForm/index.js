@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../../withRoot';
+import { asyncValidate } from '../../actions/validateUserFields';
 
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
@@ -30,6 +31,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
 });
+
 
 
 class SignupForm extends Component {
@@ -155,4 +157,6 @@ const validate = (values) => {
 export default reduxForm({
   form: 'signup',
   validate,
+  asyncValidate,
+  asyncBlurFields: ['username','email']
 })(withRoot(withStyles(styles)(SignupForm)));
