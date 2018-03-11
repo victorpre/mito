@@ -44,7 +44,6 @@ defmodule Mito.ChangesetView do
   def render_detail({message, values}) do
     Enum.reduce(values, message, fn {k, v}, acc ->
       String.replace(acc, "%{#{k}}", to_string(v))
-      |> String.capitalize()
     end)
   end
 
