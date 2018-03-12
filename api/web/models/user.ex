@@ -22,6 +22,15 @@ defmodule Mito.User do
     |> unique?
   end
 
+  def unique?(%{changes: %{username: username, email: email}} = changeset) do
+    case Mito.Repo.get_by(User, changeset.changes) do
+      nil -> changeset
+      user ->
+        errored_changeset = add_error(changeset, :email, "already exists")
+        add_error(errored_changeset, :username, "already exists")
+    end
+  end
+
   def unique?(%{changes: %{username: username}} = changeset) do
     case Mito.Repo.get_by(User, username: username) do
       nil -> changeset

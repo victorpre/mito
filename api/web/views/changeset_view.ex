@@ -30,7 +30,7 @@ defmodule Mito.ChangesetView do
   def not_available_message(changeset) do
     changeset.errors
     |> Enum.map(fn {field, er} -> %{"#{field}": String.capitalize("#{field}") <> " #{render_detail(er)}"} end)
-    |> List.last
+    |> Enum.reduce(fn(map,acc)-> Map.merge(acc, map) end)
   end
 
   def render("available.json", %{changeset: changeset}) do
