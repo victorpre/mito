@@ -5,6 +5,7 @@ import { FormControl, FormHelperText} from 'material-ui/Form'
 
 import { withStyles } from 'material-ui/styles';
 import pink from 'material-ui/colors/pink';
+import lime from 'material-ui/colors/lime';
 
 type Props = {
   input: Object,
@@ -40,9 +41,12 @@ const styles = theme => ({
   inputWidth: {
     width: "70%"
   },
+  textHelperSuccess: {
+    color: lime["A700"]
+  }
 });
 
-const Input = ({ input, label, type, placeholder, style, meta: {touched, error}, classes, required }: Props) =>
+const Input = ({ input, label, type, placeholder, style, meta: {touched, error, valid}, classes, required }: Props) =>
   <FormControl fullWidth className={classes.formControl} required={required}>
     <InputLabel
       FormControlClasses={{
@@ -68,6 +72,14 @@ const Input = ({ input, label, type, placeholder, style, meta: {touched, error},
     />
     {touched && error &&
         <FormHelperText error className={classes.helperAlign}>{error}</FormHelperText>
+    }
+    {touched && valid &&
+        <FormHelperText
+          classes={{root: classes.textHelperSuccess}}
+          className={classes.helperAlign}
+        >
+          {input.name} is available!
+        </FormHelperText>
     }
   </FormControl>;
 

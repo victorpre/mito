@@ -1,13 +1,11 @@
 // @flow
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import { Field, reduxForm } from 'redux-form';
 
 import { withStyles } from 'material-ui/styles';
 import withRoot from '../../withRoot';
+import { asyncValidate } from '../../actions/validateUserFields';
 
-import { FormControl } from 'material-ui/Form'
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';

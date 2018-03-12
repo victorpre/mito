@@ -17,22 +17,21 @@ defmodule Mito.User do
   end
 
   def unique_fields_changeset(struct, params \\ %{}) do
-    struct
+    changeset = struct
     |> cast(params, @unique_fields, [])
-    |> unique?
+
+    changeset.changes
+    |> Enum.reduce([], fn(x,acc)-> [ %{ Tuple.to_list(x) |> List.first => Tuple.to_list(x) |> List.last } | acc] end)
+    |> unique_attribs?(changeset)
   end
 
-  def unique?(%{changes: %{username: username}} = changeset) do
-    case Mito.Repo.get_by(User, username: username) do
-      nil -> changeset
-      user -> add_error(changeset, :username, "already exists")
-    end
-  end
+  def unique_attribs?([]=changes, changeset), do: changeset
 
-  def unique?(%{changes: %{email: email}} = changeset) do
-    case Mito.Repo.get_by(User, email: email) do
-      nil -> changeset
-      user -> add_error(changeset, :email, "already exists")
+  def unique_attribs?([ change | changes], changeset) do
+    case Mito.Repo.get_by(User, change) do
+      nil -> unique_attribs?(changes, changeset)
+      user ->
+        unique_attribs?(changes, add_error(changeset, Map.keys(change) |> List.first  , "already exists"))
     end
   end
 
