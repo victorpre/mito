@@ -16,6 +16,7 @@ type Props = {
   meta: Object,
   classes: Object,
   required?: Boolean,
+  asyncValidateable: Boolean,
 }
 
 const styles = theme => ({
@@ -46,7 +47,7 @@ const styles = theme => ({
   }
 });
 
-const Input = ({ input, label, type, placeholder, style, meta: {touched, error, valid}, classes, required }: Props) =>
+const Input = ({ input, label, type, placeholder, style, meta: {touched, error, valid}, classes, required, asyncValidateable }: Props) =>
   <FormControl fullWidth className={classes.formControl} required={required}>
     <InputLabel
       FormControlClasses={{
@@ -73,7 +74,7 @@ const Input = ({ input, label, type, placeholder, style, meta: {touched, error, 
     {touched && error &&
         <FormHelperText error className={classes.helperAlign}>{error}</FormHelperText>
     }
-    {touched && valid &&
+    {touched && valid && asyncValidateable &&
         <FormHelperText
           classes={{root: classes.textHelperSuccess}}
           className={classes.helperAlign}
