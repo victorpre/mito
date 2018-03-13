@@ -16,6 +16,7 @@ class Home extends Component {
   }
 
   render() {
+    const { currentUser, isAuthenticated } = this.props;
     return (
       <div style={{ display: 'flex', flex: '1' }}>
         <Grid container spacing={24}>
