@@ -90,6 +90,7 @@ class SignupForm extends Component {
                     type="text"
                     component={Input}
                     required
+                    asyncValidateable
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>
@@ -100,6 +101,7 @@ class SignupForm extends Component {
                     type="email"
                     component={Input}
                     required
+                    asyncValidateable
                   />
                 </Grid>
                 <Grid item xs={12} sm={12} lg={12}>

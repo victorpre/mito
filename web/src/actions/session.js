@@ -43,3 +43,5 @@ export function authenticate() {
           window.location = '/login';
         });
 }
+
+export const unauthenticate = () => ({ type: 'AUTHENTICATION_FAILURE' });
