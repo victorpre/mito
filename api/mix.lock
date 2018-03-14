@@ -43,6 +43,7 @@
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], [], "hexpm"},
   "postgrex": {:hex, :postgrex, "0.13.3", "c277cfb2a9c5034d445a722494c13359e361d344ef6f25d604c2353185682bfc", [:mix], [{:connection, "~> 1.0", [hex: :connection, repo: "hexpm", optional: false]}, {:db_connection, "~> 1.1", [hex: :db_connection, repo: "hexpm", optional: false]}, {:decimal, "~> 1.0", [hex: :decimal, repo: "hexpm", optional: false]}], "hexpm"},
   "ranch": {:hex, :ranch, "1.3.2", "e4965a144dc9fbe70e5c077c65e73c57165416a901bd02ea899cfd95aa890986", [:rebar3], [], "hexpm"},
+  "romeo": {:hex, :romeo, "0.7.0", "17e46830e49eff4d70e59147e808cd3f5f79912bb90a006afe5a8bb4355c29b3", [:mix], [{:connection, "~> 1.0", [hex: :connection, repo: "hexpm", optional: false]}, {:fast_xml, "~> 1.1", [hex: :fast_xml, repo: "hexpm", optional: false]}], "hexpm"},
   "stringprep": {:hex, :stringprep, "1.0.10", "552d784eb60652220fce9131f8bb0ebc62fdffd6482c4f08f2e7d61300227c28", [:rebar3], [{:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm"},
   "stun": {:hex, :stun, "1.0.20", "6b156fa11606bebb6086d02cb2f6532c84effb59c95ba93d0e2d8e2510970253", [:rebar3], [{:fast_tls, "1.0.20", [hex: :fast_tls, repo: "hexpm", optional: false]}, {:p1_utils, "1.0.10", [hex: :p1_utils, repo: "hexpm", optional: false]}], "hexpm"},
   "uuid": {:hex, :uuid, "1.1.8", "e22fc04499de0de3ed1116b770c7737779f226ceefa0badb3592e64d5cfb4eb9", [], [], "hexpm"},
