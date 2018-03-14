@@ -38,6 +38,6 @@ defmodule Mito.Auth do
   def get_user!(id), do: Repo.get!(User, id)
 
   def xmpp_login(jid, pass) do
-    Conn.start_link([jid, pass])
+    Conn.start_link([jid: jid, password: pass])
   end
 end
