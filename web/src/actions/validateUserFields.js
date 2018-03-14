@@ -18,7 +18,7 @@ export const asyncValidate = (values, dispatch) => {
           } else {
             //let other comps know success by updating redux` state
             //dispatch(response.payload);
-            resolve(data);//this is for redux-form itself
+            resolve();//this is for redux-form itself
           }
         }); //dispatch
     }
