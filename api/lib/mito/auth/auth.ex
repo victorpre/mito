@@ -3,6 +3,7 @@ defmodule Mito.Auth do
   alias Comeonin.Argon2
   alias Mito.{Repo, User}
   alias Mito.Auth.Guardian
+  alias Romeo.Connection, as: Conn
 
   @doc """
   Searches the database for a user with the matching username, then
@@ -35,4 +36,8 @@ defmodule Mito.Auth do
   end
 
   def get_user!(id), do: Repo.get!(User, id)
+
+  def xmpp_login(jid, pass) do
+    Conn.start_link([jid, pass])
+  end
 end
