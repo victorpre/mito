@@ -5,6 +5,6 @@ defmodule Mito.RoomChannel do
     jid = "#{username}@#{host}"
 
     {:ok, pid} = Mito.Auth.xmpp_login(jid, pass)
-
+    {:ok, %{pid: pid}}
   end
 end
